@@ -36,7 +36,7 @@ def dgd_t(x0, alpha, W, t, A, b, x_optimal, max_iterations):
         x_bar =np.tile(x_avg, n)
         consensus_error = np.linalg.norm(x - x_bar)
         consensus_error_list.append(consensus_error)
-        optimization_error = np.linalg.norm(x_avg - x_optimal)**2  # Compute distance to x_optimal
+        optimization_error = np.linalg.norm(x_avg - x_optimal)  # Compute distance to x_optimal
         optimization_error_list.append(optimization_error)
 
     return x, consensus_error_list, optimization_error_list

@@ -7,6 +7,10 @@ from NEAR_DGDt_LS import near_dgdt_ls
 
 np.random.seed(42)
 
+font_size = 16  # Adjust font size here
+plt.rcParams.update({'font.size': font_size})  # Sets the default font size for all elements
+
+
 # set Problem
 n, p = 10, 10  # Number of nodes and dimension size
 x0 = np.random.randn(n * p)  # Example initial point
@@ -81,9 +85,9 @@ for index, distances in enumerate(optimization_error_list_near_dgdt):
     plt.semilogy(distances, label=f'NEAR-DGDt t={t_values[index]}', linestyle=':', color=colors[index])
 for index, distances in enumerate(optimization_error_list_near_dgdt_ls):
     plt.semilogy(distances, label=f'NEAR-DGDt-LS t={t_values[index]}', color=colors[index])
-plt.title('Convergence vs. Number of Iterations')
+plt.title('Optimization Error vs. Number of Iterations')
 plt.xlabel('Number of Iterations')
-plt.ylabel('Log of Normalized Distance to Optimal Solution')
+plt.ylabel('Optimization Error')
 plt.grid(True)
 
 # Relative Error vs. Number of Communications
@@ -95,9 +99,9 @@ for index, distances in enumerate(optimization_error_list_near_dgdt):
 for index, distances in enumerate(optimization_error_list_near_dgdt_ls):
     plt.semilogy(np.arange(max_iterations) * t_values[index], distances, label=f'NEAR-DGDt-LS t={t_values[index]}', color=colors[index])
 
-plt.title('Relative Error vs. Number of Communications')
+plt.title('Optimization Error vs. Number of Communications')
 plt.xlabel('Number of Communications')
-plt.ylabel('Log of Normalized Distance to Optimal Solution')
+plt.ylabel('Optimization Error')
 plt.grid(True)
 
 # Relative Error vs. Number of Gradient Evaluations
@@ -109,9 +113,9 @@ for index, distances in enumerate(optimization_error_list_near_dgdt):
 for index, distances in enumerate(optimization_error_list_near_dgdt_ls):
     plt.semilogy(distances, label=f'NEAR-DGDt-LS t={t_values[index]}', color=colors[index])
 
-plt.title('Relative Error vs. Number of Gradient Evaluations')
+plt.title('Optimization Error vs. Number of Gradient Evaluations')
 plt.xlabel('Number of Gradient Evaluations')
-plt.ylabel('Log of Normalized Distance to Optimal Solution')
+plt.ylabel('Optimization Error')
 plt.grid(True)
 
 # Relative Error vs. Cost
@@ -125,9 +129,9 @@ for index, distances in enumerate(optimization_error_list_near_dgdt):
 for index, distances in enumerate(optimization_error_list_near_dgdt_ls):
     cost = c1 * (np.arange(max_iterations) * t_values[index]) + c2 * np.arange(max_iterations)
     plt.semilogy(cost, distances, label=f'NEAR-DGDt-LS t={t_values[index]}', color=colors[index])
-plt.title('Relative Error vs. Cost')
-plt.xlabel('Cost (c1*Communications + c2*Gradient Evaluations)')
-plt.ylabel('Log of Normalized Distance to Optimal Solution')
+plt.title('Optimization Error vs. Cost')
+plt.xlabel('Cost')
+plt.ylabel('Optimization Error')
 plt.grid(True)
 
 # Place a single legend outside the bottom of the plots
@@ -159,7 +163,7 @@ for index, distances in enumerate(consensus_error_list_near_dgdt_ls):
     plt.semilogy(distances, label=f'NEAR-DGDt-LS t={t_values[index]}', color=colors[index])
 plt.title('Consensus Error vs. Number of Iterations')
 plt.xlabel('Number of Iterations')
-plt.ylabel('Log of Consensus Error')
+plt.ylabel('Consensus Error')
 plt.grid(True)
 
 # Relative Error vs. Number of Communications
@@ -172,7 +176,7 @@ for index, distances in enumerate(consensus_error_list_near_dgdt_ls):
     plt.semilogy(np.arange(max_iterations) * t_values[index], distances, label=f'NEAR-DGDt-LS t={t_values[index]}', color=colors[index])
 plt.title('Consensus Error vs. Number of Communications')
 plt.xlabel('Number of Communications')
-plt.ylabel('Log of Consensus Error')
+plt.ylabel('Consensus Error')
 plt.grid(True)
 
 # Relative Error vs. Number of Gradient Evaluations
@@ -185,7 +189,7 @@ for index, distances in enumerate(consensus_error_list_near_dgdt_ls):
     plt.semilogy(distances, label=f'NEAR-DGDt-LS t={t_values[index]}', color=colors[index])
 plt.title('Consensus Error vs. Number of Gradient Evaluations')
 plt.xlabel('Number of Gradient Evaluations')
-plt.ylabel('Log of Consensus Error')
+plt.ylabel('Consensus Error')
 plt.grid(True)
 
 # Relative Error vs. Cost
@@ -200,8 +204,8 @@ for index, distances in enumerate(consensus_error_list_near_dgdt_ls):
     cost = c1 * (np.arange(max_iterations) * t_values[index]) + c2 * np.arange(max_iterations)
     plt.semilogy(cost, distances, label=f'NEAR-DGDt-LS t={t_values[index]}', color=colors[index])
 plt.title('Consensus Error vs. Cost')
-plt.xlabel('Cost (c1*Communications + c2*Gradient Evaluations)')
-plt.ylabel('Log of Consensus Error')
+plt.xlabel('Cost')
+plt.ylabel('Consensus Error')
 plt.grid(True)
 
 # Place a single legend outside the bottom of the plots
